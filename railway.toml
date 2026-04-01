@@ -1,0 +1,10 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "freqtrade trade --config config_railway.json --strategy ClaudeStrategy --logfile /freqtrade/user_data/logs/freqtrade.log"
+healthcheckPath = "/api/v1/ping"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
