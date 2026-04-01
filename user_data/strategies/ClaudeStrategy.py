@@ -12,7 +12,7 @@ Set ANTHROPIC_API_KEY in your environment or .env file.
 import logging
 import os
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Any, Optional
 
 try:
     import anthropic
@@ -22,8 +22,7 @@ except ImportError:
 
 import pandas as pd
 from pandas import DataFrame
-from freqtrade.strategy import IStrategy, informative
-from freqtrade.strategy.interface import ExitCheckTuple
+from freqtrade.strategy import IStrategy
 import talib.abstract as ta
 
 logger = logging.getLogger(__name__)
@@ -53,7 +52,7 @@ class ClaudeStrategy(IStrategy):
     startup_candle_count = 50
 
     # --- Claude state (shared across candles) ---
-    _claude_client: Optional[anthropic.Anthropic] = None
+    _claude_client: Optional[Any] = None
     _last_claude_check: Optional[datetime] = None
     _claude_bias: str = "neutral"       # "bullish" | "neutral" | "bearish"
     _claude_reasoning: str = ""
